@@ -1,0 +1,30 @@
+{
+  "name": "pi-theme-nebula",
+  "version": "1.0.0",
+  "description": "Nebula — a deep-space colour theme for the Pi CLI coding agent, in two variants (transparent and filled).",
+  "keywords": [
+    "pi",
+    "pi-theme",
+    "pi-package",
+    "theme",
+    "terminal",
+    "tui",
+    "colorscheme"
+  ],
+  "license": "MIT",
+  "author": "Anton Radionov <radianoshop@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radiano2/pi-theme-nebula.git"
+  },
+  "pi": {
+    "themes": [
+      "./themes"
+    ]
+  },
+  "files": [
+    "themes",
+    "README.md",
+    "LICENSE"
+  ]
+}
