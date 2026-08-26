@@ -1,15 +1,17 @@
 {
   "name": "pi-theme-nebula",
-  "version": "1.0.0",
-  "description": "Nebula — a deep-space colour theme for the Pi CLI coding agent, in two variants (transparent and filled).",
+  "version": "1.1.0",
+  "description": "Nebula — a deep-space colour theme for the Pi CLI coding agent, plus an animated parallax starfield extension that pairs with it.",
   "keywords": [
     "pi",
     "pi-theme",
     "pi-package",
+    "pi-extension",
     "theme",
     "terminal",
     "tui",
-    "colorscheme"
+    "colorscheme",
+    "animation"
   ],
   "license": "MIT",
   "author": "Anton Radionov <radianoshop@gmail.com>",
@@ -20,10 +22,14 @@
   "pi": {
     "themes": [
       "./themes"
+    ],
+    "extensions": [
+      "./extensions/starfield.ts"
     ]
   },
   "files": [
     "themes",
+    "extensions",
     "README.md",
     "LICENSE"
   ]

@@ -1,10 +1,19 @@
-# Nebula — a deep-space theme for Pi
+# Nebula — a deep-space theme + starfield for Pi
 
-A colour theme for the [Pi CLI](https://github.com/badlogic/pi-mono) coding agent, built
-around a deep-space palette: violet and indigo backgrounds, starlight text, and cyan /
-aurora / comet accents.
+A colour theme **and** an animated background for the [Pi CLI](https://github.com/badlogic/pi-mono)
+coding agent, built around a deep-space palette: violet and indigo backgrounds, starlight
+text, and cyan / aurora / comet accents.
 
-Ships in **two variants**:
+## What's included
+
+- **Two theme variants** (`nebula`, `nebula-deep`) — the colour palette
+- **A starfield extension** — an animated parallax starfield with nebula clouds and comets,
+  rendered live in a widget band above (or below) the editor
+
+They're designed as a pair — the starfield only emits foreground colours, so it reads
+correctly against the theme's backgrounds — but each works fine on its own.
+
+## Theme variants
 
 | Variant | Look | Best for |
 |---|---|---|
@@ -32,6 +41,29 @@ are painted or left to the terminal.
 | `nebulaBg` | `#1a1230` | selection background (`nebula`) |
 | `voidBg` | `#12101f` | deepest background (`nebula`) |
 
+## The starfield extension
+
+A live-rendered widget: drifting parallax stars in three depth layers, slow nebula clouds
+(value noise, not random static), and comets that streak across the band. Only foreground
+colours are emitted — no background is painted — so your terminal's own background (and any
+transparency) shows through underneath it.
+
+It reacts to the agent: a **warp effect** kicks in automatically while the agent is
+thinking (stars stretch into streaks, speed ramps up) and eases back once it settles. It
+also installs a matching orbiting-moon working indicator (◐◓◑◒ in theme colours).
+
+### Commands
+
+| Command | Effect |
+|---|---|
+| `/space` | toggle the starfield on/off |
+| `/space on` / `/space off` | explicit on/off |
+| `/space height N` | band height in rows (1–20) |
+| `/space density N` | star density percent (1–40) |
+| `/space nebula N` | nebula cloud coverage percent (0–100) |
+| `/space warp` | trigger a manual warp burst |
+| `/space above` / `/space below` | move the band above or below the editor |
+
 ## Install
 
 ### As a Pi package (recommended)
@@ -40,29 +72,37 @@ are painted or left to the terminal.
 pi install git:github.com/radiano2/pi-theme-nebula
 ```
 
-Then pick it with `/theme` inside Pi, or set it in `~/.pi/agent/settings.json`:
+This installs **both** theme variants and the starfield extension in one step. Pick a theme
+with `/theme` inside Pi, or set it in `~/.pi/agent/settings.json`:
 
 ```json
 { "theme": "nebula" }
 ```
 
+The starfield is on by default; toggle it with `/space off` if you'd rather have a plain
+editing area.
+
 ### Manually
 
-Copy either file into your global themes directory:
+Copy the theme files into your global themes directory, and the extension into your global
+extensions directory:
 
 ```bash
-mkdir -p ~/.pi/agent/themes
+mkdir -p ~/.pi/agent/themes ~/.pi/agent/extensions
 curl -o ~/.pi/agent/themes/nebula.json \
   https://raw.githubusercontent.com/radiano2/pi-theme-nebula/main/themes/nebula.json
 curl -o ~/.pi/agent/themes/nebula-deep.json \
   https://raw.githubusercontent.com/radiano2/pi-theme-nebula/main/themes/nebula-deep.json
+curl -o ~/.pi/agent/extensions/starfield.ts \
+  https://raw.githubusercontent.com/radiano2/pi-theme-nebula/main/extensions/starfield.ts
 ```
 
-Pi discovers themes from:
+Pi discovers these from:
 
-- Global: `~/.pi/agent/themes/*.json`
-- Project: `.pi/themes/*.json` (after the project is trusted)
-- Packages: a `themes/` directory or a `pi.themes` entry in `package.json`
+- Themes — global `~/.pi/agent/themes/*.json`, project `.pi/themes/*.json`, or a package's
+  `themes/` directory / `pi.themes` entry
+- Extensions — global `~/.pi/agent/extensions/*.ts`, project `.pi/extensions/*.ts`, or a
+  package's `pi.extensions` entry
 
 ## Customising
 
